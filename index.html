@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ACHADINHOS DA ELLEN | AI CREATIVE SUITE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Rajdhani', 'sans-serif'],
+              display: ['Orbitron', 'sans-serif'],
+              mono: ['Share Tech Mono', 'monospace'],
+            },
+            colors: {
+              void: '#000000',
+              panel: '#050505',
+              acid: {
+                green: '#39FF14',
+                lime: '#ccff00',
+              },
+              neon: {
+                pink: '#FF0099',
+                cyan: '#00F0FF',
+                purple: '#BC13FE'
+              }
+            },
+            animation: {
+              'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'glitch': 'glitch 0.2s linear infinite',
+              'spin-slow': 'spin 10s linear infinite',
+              'grid-move': 'gridMove 20s linear infinite',
+            },
+            keyframes: {
+              gridMove: {
+                '0%': { transform: 'translateY(0)' },
+                '100%': { transform: 'translateY(40px)' },
+              },
+              glitch: {
+                '0%, 100%': { transform: 'translate(0)' },
+                '33%': { transform: 'translate(-2px, 2px)', color: '#FF0099' },
+                '66%': { transform: 'translate(2px, -2px)', color: '#00F0FF' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #000;
+        color: #e0e0e0;
+        overflow-x: hidden;
+      }
+
+      .drop-shadow-glow {
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+      }
+
+      /* GOD MODE ANIMATED GRID */
+      .perspective-grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: 
+          linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.2) 100%), 
+          linear-gradient(0deg, transparent 24%, rgba(57, 255, 20, .05) 25%, rgba(57, 255, 20, .05) 26%, transparent 27%, transparent 74%, rgba(57, 255, 20, .05) 75%, rgba(57, 255, 20, .05) 76%, transparent 77%, transparent), 
+          linear-gradient(90deg, transparent 24%, rgba(57, 255, 20, .05) 25%, rgba(57, 255, 20, .05) 26%, transparent 27%, transparent 74%, rgba(57, 255, 20, .05) 75%, rgba(57, 255, 20, .05) 76%, transparent 77%, transparent);
+        background-size: 80px 80px;
+        transform: perspective(800px) rotateX(40deg) scale(2);
+        transform-origin: top center;
+        animation: gridMove 20s linear infinite;
+        z-index: -1;
+        opacity: 0.4;
+        pointer-events: none;
+      }
+      
+      .scanlines {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(
+          to bottom,
+          rgba(255,255,255,0),
+          rgba(255,255,255,0) 50%,
+          rgba(0,0,0,0.1) 50%,
+          rgba(0,0,0,0.1)
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.3;
+      }
+
+      .hologram-card {
+        background: rgba(8, 8, 8, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(40px);
+        position: relative;
+      }
+
+      .input-cyber {
+        background: rgba(0,0,0,0.7);
+        border: 1px solid rgba(255,255,255,0.05);
+        color: #fff;
+        font-family: 'Share Tech Mono', monospace;
+        transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      
+      .input-cyber:focus {
+        border-color: #39FF14;
+        box-shadow: 0 0 25px rgba(57, 255, 20, 0.15);
+        background: rgba(0,0,0,0.9);
+        outline: none;
+      }
+
+      .btn-glitch {
+        background: #39FF14;
+        color: #000;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        transition: all 0.4s;
+      }
+      
+      .btn-glitch:hover {
+        background: #fff;
+        transform: scale(1.01);
+        box-shadow: 0 0 40px rgba(57, 255, 20, 0.5);
+      }
+
+      ::-webkit-scrollbar { width: 5px; }
+      ::-webkit-scrollbar-track { background: #000; }
+      ::-webkit-scrollbar-thumb { background: #111; border: 1px solid #39FF14; border-radius: 0; }
+      ::-webkit-scrollbar-thumb:hover { background: #39FF14; }
+
+      @keyframes glowPulse {
+        0%, 100% { filter: drop-shadow(0 0 5px rgba(57, 255, 20, 0.2)); }
+        50% { filter: drop-shadow(0 0 20px rgba(57, 255, 20, 0.4)); }
+      }
+      .animate-glow { animation: glowPulse 2s infinite; }
+      
+      .blur-transition {
+        transition: filter 0.8s ease, transform 0.8s ease, opacity 0.8s ease;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+</head>
+  <body class="antialiased selection:bg-neon-pink selection:text-white overflow-x-hidden">
+    <div class="perspective-grid"></div>
+    <div class="scanlines"></div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
